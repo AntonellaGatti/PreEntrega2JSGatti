@@ -73,18 +73,25 @@ continuarCarga()
 mostrarCotizacion()
 
 // // FUNCION PARA BUSCAR UN ITEM EN EL ARRAY Y ELIMINARLO
-document.getElementById("borrarItem").addEventListener("click", borrarItem);
+let btnBuscarYBorrar = document.getElementById("borrarItem");
+btnBuscarYBorrar.addEventListener("click",buscarYBorrarItem);
 
-function borrarItem(itemAborrar) {
-    itemAborrar = prompt("Por favor indiquenos que Item quiere eliminar de la cotización")
-    const indice = carrito.indexOf(item => item.tipoDeEmbalaje === itemAborrar)
-    if (indice !== -1) {
-        carrito.splice(indice, 1);
-        console.log(`Se ha eliminado el item con tipo de embalaje ${itemAborrar} de la cotización.`);
+function buscarYBorrarItem() {
+    const itemABuscar = prompt("Ingrese el tipo de Embalaje a buscar en el carrito");
+    let indiceAEliminar = -1;
+    carrito.forEach((item, index) => {
+      if (item.tipoDeEmbalaje === itemABuscar) {
+        indiceAEliminar = index;
+      }
+    });
+    
+    if (indiceAEliminar > -1) {
+      carrito.splice(indiceAEliminar, 1);
+      alert(`Se eliminó el elemento con tipo de embalaje "${itemABuscar}" del carrito`);
     } else {
-        console.log(`No se encontró ningún item con tipo de embalaje ${itemAborrar} en la cotización.`);
+      alert(`No se encontró ningún elemento con tipo de embalaje "${itemABuscar}" en el carrito`);
     }
-}
-
+  }
+  
 
 
